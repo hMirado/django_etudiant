@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include 'menu.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="mg-r-15 mg-l-15">
+    <div class="breadcomb-area">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="breadcomb-list">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="breadcomb-wp">
+                            <div class="breadcomb-icon">
+                                <i class="fa fa-user fa-3x"></i>
+                            </div>
+                            <div class="breadcomb-ctn">
+                                <h2>ETUDIANTS</h2>
+                                <p>Gérer ici vos étudiants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start modal detail etudiant -->
+    {% include 'etudiant/modal/modal_detail.html' %}
+    <!-- End modal detail etudiant -->
+
+
+    <div class="widget-tabs-int">
+        <div class="tab-hd nav nav-tabs">
+            <h2>Listes des étudiants en retard</h2>
+        </div>
+        <div>
+            <div class>
+              <table class="table table-bordered table-striped tableau-scroll">
+                  <thead>
+                      <tr>
+                          <th scope="col">identifiant</th>
+                          <th scope="col">Nom</th>
+                          <th scope="col">Prénom(s)</th>
+                          <th scope="col">Date de naissance</th>
+                          <th scope="col">Addresse</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Tel.</th>
+                          <th scope="col">Parent</th>
+                          <th scope="col">Tel. Parent</th>
+                          <th scope="col" class="text-center">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for etudiant in etudiant_info %}
+                      <tr>
+                          <th scope="row"><span class="action-detail" data-toggle="modal" data-target="#staticBackdrop" data-identifiant="{{ etudiant.identifiant }}"
+                            data-name="{{ etudiant.fname }} {{ etudiant.lname }}" data-birthday="{{ etudiant.birthday }}" data-adresse="{{ etudiant.adresse }}"
+                            data-contact="{{ etudiant.email }} | {{ etudiant.phone }}" data-phone_pere="{{ etudiant.phone_pere }}" data-phone_mere="{{ etudiant.phone_mere }}">
+                              {{ etudiant.identifiant }}
+                          </span></th>
+                          <td>{{ etudiant.lname }}</td>
+                          <td>{{ etudiant.fname }}</td>
+                          <td>{{ etudiant.birthday|date:"Y-m-d" }}</td>
+                          <td>{{ etudiant.adresse }}</td>
+                          <td><a href="mailto:{{ etudiant.email }}" target="_top">{{ etudiant.email }}</a></td>
+                          <td>{{ etudiant.phone }}</td>
+                          <td>{{ etudiant.pere }} | {{ etudiant.mere }}</td>
+                          <td>{{ etudiant.phone_pere }} | {{ etudiant.phone_mere }}</td>
+                          <td class="text-center">
+                              <span class="action edit-etudiant" data-id="{{ etudiant.id }}" data-num="{{ etudiant.etudiant_id }}" data-identifiant="{{ etudiant.identifiant }}" data-lname="{{ etudiant.lname }}" data-fname="{{ etudiant.fname }}"
+                              data-birthday="{{ etudiant.birthday|date:'Y-m-d' }}" data-adresse="{{ etudiant.adresse }}" data-email="{{ etudiant.email }}" data-phone="{{ etudiant.phone }}" data-pere="{{ etudiant.pere }}"
+                              data-mere="{{ etudiant.mere }}" data-phone_pere="{{ etudiant.phone_pere }}" data-phone_mere="{{ etudiant.mere }}" data-adresse_parent="{{ etudiant.adresse_parent }}">
+                                  <span class="fa fa-edit text-green-700 mx-2"></span></span>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="tab-hd nav nav-tabs"></div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <br>
+
+        <div class="widget-tabs-int mgt-15">
+            <form id="item_form" action="{% url 'etudiant:etudiant' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input id="etudiant-id" type="hidden" name="id" value="" />
+                <input id="etudiant-num" type="hidden" name="num" value="" />
+                <div class="flex flex-wrap form-content justify-between">
+                    <div class="form-item mb-3">
+                        <label for="">IDENTIFIANT </label>
+                        {{ eform.identifiant }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">NOM </label>
+                        {{ eform.lname }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">PRENOM(S) </label>
+                        {{ eform.fname }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">DATE DE NAISSANCE </label>
+                        {{ eform.birthday }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">ADRESSE </label>
+                        {{ eform.adresse }}
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="form-item mb-3">
+                        <label for="">TEL.</label>
+                        {{ cform.phone }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">EMAIL </label>
+                        {{ cform.email }}
+                    </div>
+
+                    <!-- Parent -->
+                    <div class="form-item mb-3">
+                        <label for="">PERE </label>
+                        {{ pform.pere }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">TEL.  </label>
+                        {{ pform.phone_pere }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">MERE </label>
+                        {{ pform.mere }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">TEL.  </label>
+                        {{ pform.phone_mere }}
+                    </div>
+                    <div class="form-item mb-3">
+                        <label for="">ADRESSE PARENT  </label>
+                        {{ pform.adresse_parent }}
+                    </div>
+
+                    <div>
+                        <div class="flex mb-3 justify-end">
+                            <input class="btn btn-primary m-3" type="submit" value="ENREGISTRER">
+                            <input class="btn btn-danger m-3 cancel" type="submit" value="ANNULER">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

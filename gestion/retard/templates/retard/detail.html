@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include 'menu.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="mg-r-15 mg-l-15">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a href="{% url 'retard:retard' %}"><i class="fa fa-undo"></i> RETARD</a> / DETAIL
+        <br>
+        <div class="widget-tabs-int">
+          <div class="breadcomb-wp">
+              <div class="breadcomb-icon">
+                  <i class="fa fa-user"></i>
+              </div>
+              <div class="breadcomb-ctn text-blue-900">
+                  <h2><span class="uppercase-b">
+                          {{ etudiant_lname }}
+                          {{ etudiant_fname }}
+                      </span></h2>
+                  <h3>{{ etudiant_id }}</h3>
+              </div>
+          </div>
+          <br>
+
+            {% for semestres in semestre %}
+                <h1>SEMESTRE {{ semestres.semestre }} : <span class="badge badge-pill badge-warning" style="font-size: 20px">{{ semestres.sem }}</span></h1>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="widget-tabs-int ">
+        <div class="tab-hd nav nav-tabs">
+            <h2>Nombre de retard de l'étudiant</h2>
+        </div>
+
+        <div>
+            <div class>
+                <table class="table table-striped tableau">
+                    <thead>
+                        <tr>
+                            <th scope="col">NIVEAU</th>
+                            <th scope="col">SEMESTRE</th>
+                            <th scope="col">MATIERE</th>
+                            <th scope="col">NOMBRE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for matieres in matiere %}
+                        <tr>
+                            <td>{{ matieres.niveau }}</td>
+                            <td>{{ matieres.semestre }}</td>
+                            <td>{{ matieres.matiere }}</td>
+                            <td>{{ matieres.count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

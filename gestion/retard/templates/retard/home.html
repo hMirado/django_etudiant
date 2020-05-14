@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include 'menu.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="mg-r-15 mg-l-15">
+    <div class="breadcomb-area">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="breadcomb-list">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="breadcomb-wp">
+                            <div class="breadcomb-icon">
+                                <i class="fa fa-bell"></i>
+                            </div>
+                            <div class="breadcomb-ctn">
+                                <h2>RETARD</h2>
+                                <p>Gérer ici vos étudiants en retard</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget-tabs-int">
+        <div class="tab-hd nav nav-tabs">
+            <h2>Listes des étudiants en retard</h2>
+        </div>
+        <div>
+            <div class>
+                <table class="table table-striped tableau">
+                    <thead>
+                        <tr>
+                            <th scope="col">IDENTIFIANT</th>
+                            <th scope="col">NIVEAU</th>
+                            <th scope="col">SEMESTRE</th>
+                            <th scope="col">MATIERE</th>
+                            <th scope="col">DATE / HEURE D'ARRIVEE</th>
+                            <th scope="col" class="text-center">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for retards in retard %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'retard:detail' retard_id=retards.identifiant %}">{{ retards.identifiant }}</a></th>
+                            <td>{{ retards.niveau }}</td>
+                            <td>{{ retards.semestre }}</td>
+                            <td>{{ retards.matiere }}</td>
+                            <td>{{ retards.date }}</td>
+                            <td class="text-center">
+                                <span class="action edit-retard" data-id="{{ retards.id }}" data-identifiant="{{ retards.identifiant }}"
+                                  data-niveau="{{ retards.niveau }}" data-matiere="{{ retards.matiere }}" data-semestre="{{ retards.semestre }}">
+                                    <i class="fa fa-edit text-green-700 mx-2"></i>
+                                </span>
+                                <!-- <span class="action edit-retard">
+                                    <a href="{% url 'retard:detail' retard_id=retards.identifiant %}">
+                                        <i class="fa fa-eye text-blue-500 mx-2"></i>
+                                    </a>
+                                </span> -->
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="tab-hd nav nav-tabs"></div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <br>
+
+        <div class="widget-tabs-int mgt-15">
+            <form id="item_form" action="{% url 'retard:retard' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input id="retard-id" type="hidden" name="id" value="" />
+                <div class="flex flex-wrap form-content justify-between">
+                    <div class="form-item mb-3">
+                        <label for="">IDENTIFIANT </label>
+                        <select id="retard-identifiant" class="w-full border border-gray-800 rounded-lg" name="identifiant">
+                            <option selected="selected">Selectionnez-ici</option>
+                            {% for identifiant in etudiant %}
+                            <option value="{{identifiant.identifiant}}">{{identifiant.identifiant}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-item mb-3">
+                        <label for="">NIVEAU</label>
+                        <select id="retard-niveau" class="w-full border border-gray-800 rounded-lg" name="niveau">
+                            <option selected="selected">Selectionnez-ici</option>
+                            <option value="L1 IRD">L1 IRD</option>
+                            <option value="L1 TC">L1 TC</option>
+                            <option value="L2 BANCAS">L2 BANCAS</option>
+                            <option value="L2 IRD">L2 IRD</option>
+                            <option value="L2 MEGP">L2 MEGP</option>
+                            <option value="L3 BANCAS">L3 BANCAS</option>
+                            <option value="L3 IRD">L3 IRD</option>
+                            <option value="L3 MEGP">L3 MEGP</option>
+                        </select>
+                    </div>
+
+                    <div class="form-item mb-3">
+                        <label for="">SEMESTRE</label>
+                        <select id="retard-semestre" class="w-full border border-gray-800 rounded-lg" name="semestre">
+                            <option selected="selected">Selectionnez-ici</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                            <option value="S4">S4</option>
+                            <option value="S5">S5</option>
+                            <option value="S6">S6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-item mb-3">
+                        <label for="">MATIERE</label>
+                        <input id="retard-matiere" class="w-full border border-gray-800 rounded-lg" type="text" name="matiere" value="" required />
+                    </div>
+
+                    <div>
+                        <div class="flex mb-3 justify-end">
+                            <input class="btn btn-primary m-3" type="submit" value="ENREGISTRER">
+                            <input class="btn btn-danger m-3 cancel" type="submit" value="ANNULER">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ESMIA</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo/logo-esmia.png' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet"> -->
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+    <!-- meanmenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <!-- notika icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/notika-custom-icon.css' %}">    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- tailwind CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <!-- dataTable CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/dataTables/dataTables.css' %}">
+    <!-- custom CSS
+    ============================================ -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="{% static 'js/modernizr-2.8.3.min.js' %}"></script>
+</head>
+
+<body>
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo/logo-esmia.png' %}" alt="" style="width: 15%; height:15%;" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+
+    <!-- Start Navbar area -->
+    {% block navbar %}{% endblock %}
+    <!-- End Navbar area -->
+
+    <!-- Start Content area-->
+    {% block content %}{% endblock %}
+    <!-- End Content area end-->
+
+    <!-- Start Footer area-->
+    <div style="margin-bottom: -15%">
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>Copyright © 2020. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    <!-- End Footer area-->
+
+    <!-- jquery
+		============================================ -->
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'js/meanmenu/jquery.meanmenu.js' %}"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- dataTable JS
+		============================================ -->
+    <script src="{% static 'js/dataTables/dataTables.js' %}"></script>
+    <!-- custom JS
+		============================================ -->
+    <script src="{% static 'js/custom/custom.js' %}"></script>
+    <script src="{% static 'js/custom/etudiant.js' %}"></script>
+    <script src="{% static 'js/custom/retard.js' %}"></script>
+</body>
+
+</html>

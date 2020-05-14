@@ -1,0 +1,7 @@
+CREATE OR REPLACE VIEW v_etudiant_info AS
+SELECT et.id AS id, et.identifiant AS identifiant, et.fname AS fname, et.lname AS lname, et.birthday AS birthday, et.adresse AS adresse,
+cont.email AS email, cont.phone AS phone, cont.etudiant_id AS etudiant_id,
+p.pere AS pere, p.mere AS mere, p.phone_pere AS phone_pere, p.phone_mere AS phone_mere, p.adresse_parent AS adresse_parent
+FROM  etudiant_etudiant AS et
+LEFT JOIN etudiant_contact AS cont ON et.id = cont.etudiant_id
+LEFT JOIN etudiant_parent AS p On et.id = p.etudiant_id

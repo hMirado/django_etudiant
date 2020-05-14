@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="x_content p-5">
+    <div class="flex flex-wrap justify-around">
+        <a href="{% url 'etudiant:etudiant' %}">
+            <div class="x_item rounded-lg text-center m-5 pt-4">
+                <h2 class="mb-3"><span class="fa fa-user fa-3x"></span><i class="fas fa-user-graduate"></i></h2>
+                <h3 class="w-full text-center">ETUDIANTS</h3>
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap justify-around">
+        <a href="#">
+            <div class="x_item rounded-lg text-center m-5 pt-4">
+                <h2 class="mb-3"><span class="fa fa-book fa-3x"></span></h2>
+                <h3 class="w-full text-center">MATIERES</h3>
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap justify-around">
+        <a href="#">
+          <div class="x_item rounded-lg text-center m-5 pt-4">
+              <h2 class="mb-3"><span class="fa fa-edit fa-3x"></span></h2>
+              <h3 class="w-full text-center">NOTES</h3>
+          </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap justify-around">
+        <a href="{% url 'retard:retard' %}">
+          <div class="x_item rounded-lg text-center m-5 pt-4">
+              <h2 class="mb-3"><span class="fa fa-bell fa-3x"></span></h2>
+              <h3 class="w-full text-center">RETARDS</h3>
+          </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap justify-around">
+        <a href="#">
+          <div class="x_item rounded-lg text-center m-5 pt-4">
+              <h2 class="mb-3"><span class="fa fa-ban fa-3x"></span></h2>
+              <h3 class="w-full text-center">ABSENTS</h3>
+          </div>
+        </a>
+    </div>
+</div>
+{% endblock %}
